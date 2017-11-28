@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="school" class="com.ylisoftware.spel.School">
+        <property name="name" value="#{'清华大学'}"/>
+        <property name="location" value="#{'bj'}"/>
+        <property name="build" value="#{100}"/>
+        <!--静态方法静态属性-->
+        <property name="price" value="#{T(java.lang.Math).random()*100000}"/>
+
+    </bean>
+    <bean id="student" class="com.ylisoftware.spel.Student">
+        <property name="name" value="#{'studentName'}"/>
+        <property name="school" value="#{school}"/>
+        <property name="location" value="#{school.location}"/>
+        <property name="address" value="#{school.findName()}"/>
+        <property name="state" value="#{school.location eq 'bj'}"/>
+    </bean>
+
+</beans>
