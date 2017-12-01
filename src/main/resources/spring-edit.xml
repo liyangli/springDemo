@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        针对属性的editer进行测试
+    -->
+    <bean id="dependsOnExoticType" class="com.ylisoftware.beanWrapper.DependsOnExoticType">
+        <!--通过editor进行把对象重新给映射了-->
+        <property name="exoticType"  value="aNameForExoticType"/>
+    </bean>
+
+    <!--需要进行设置具体的实体对象类型-->
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <!--设置上需要映射的类型和映射的editor分别是哪个-->
+                <entry key="com.ylisoftware.beanWrapper.ExoticType"  value="com.ylisoftware.beanWrapper.pop.ExoticTypeEditor"/>
+            </map>
+        </property>
+    </bean>
+</beans>
